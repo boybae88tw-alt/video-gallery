@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><style>
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.thumb{cursor:pointer;border-radius:8px;overflow:hidden;border:1px solid #ddd}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;place-items:center}
+.modal.open{display:grid}
+</style>
+<h2>Video Galeri</h2>
+<div class="grid">
+  <img class="thumb" src="thumb1.jpg" data-src="v1.mp4" alt="">
+  <img class="thumb" src="thumb2.jpg" data-src="v2.mp4" alt="">
+</div>
+<div class="modal" id="m"><video id="v" controls></video></div>
+<script>
+const m=document.getElementById('m'),v=document.getElementById('v');
+document.querySelectorAll('.thumb').forEach(t=>t.onclick=()=>{v.src=t.dataset.src;m.classList.add('open');v.play()});
+m.onclick=()=>{m.classList.remove('open');v.pause();v.currentTime=0};
+</script>
